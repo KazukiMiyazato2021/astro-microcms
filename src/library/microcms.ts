@@ -23,7 +23,7 @@ export type NewsResponse = {
 };
 
 //APIの呼び出し
-export const getNews = async (queries?: MicroCMSQueries) => {
+export const getNewsList = async (queries?: MicroCMSQueries) => {
   return await client.get<NewsResponse>({ endpoint: "news", queries });
 };
 export const getNewsDetail = async (

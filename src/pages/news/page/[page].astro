@@ -3,12 +3,12 @@ import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
-import { getNews, News } from '../../../library/microcms';
+import { getNewsList, News } from '../../../library/microcms';
 import type { GetStaticPathsOptions } from 'astro';
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const pageSize = 3 // 3記事ずつにページを分割
-  const response = await getNews({
+  const response = await getNewsList({
     fields: ['id', 'title'],
     limit: 1000,
     orders: '-publishedAt',

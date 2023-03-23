@@ -3,9 +3,9 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { getNews } from '../library/microcms';
+import { getNewsList } from '../library/microcms';
 
-const response = await getNews({fields: ['id', 'title']})
+const response = await getNewsList({fields: ['id', 'title']})
 ---
 
 <!DOCTYPE html>
