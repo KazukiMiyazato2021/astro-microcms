@@ -40,7 +40,7 @@ export interface Props {
       <ul class="p-8">
         {page.data.map(content =>
           <li>
-            <a href="http://">{content.title}</a>
+            <a href={`/news/${content.id}`}>{content.title}</a>
           </li>
         )}
       </ul>

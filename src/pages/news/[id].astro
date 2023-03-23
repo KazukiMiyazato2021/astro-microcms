@@ -1,0 +1,34 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getNewsList, getNewsDetail } from '../../library/microcms';
+
+export const getStaticPaths = async () => {
+  const response = await getNewsList({ fields: ['id'], limit: 1000 });
+  return response.contents.map((content) => ({
+    params: {
+      id: content.id,
+    },
+  }));
+};
+// Astro.paramsから各ルーティングのidを取得
+const { id } = Astro.params;
+const news = await getNewsDetail(id as string);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+      <h1>{news.title}</h1>
+      <div set:html={news.content}></div>
+		</main>
+		<Footer />
+	</body>
+</html>
