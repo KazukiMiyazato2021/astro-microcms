@@ -6,6 +6,10 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
-  integrations: [mdx(), sitemap(), tailwind()]
+  site: 'https://KazukiMiyazato2021.github.io/astro-microcms',
+  base: '/astro-microcms',
+  integrations: [mdx(), sitemap(), tailwind()],
+  vite: {
+    base: '/astro-microcms',
+  },
 });

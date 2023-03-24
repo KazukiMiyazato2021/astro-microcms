@@ -40,13 +40,13 @@ export interface Props {
       <ul class="p-8">
         {page.data.map(content =>
           <li>
-            <a href={`/news/${content.id}`}>{content.title}</a>
+            <a href={`${import.meta.env.BASE_URL}/news/${content.id}`}>{content.title}</a>
           </li>
         )}
       </ul>
       <nav class="flex justify-between w-full">
-        <a class="p-2 border border-slate-400 rounded-sm" class:list={[{'pointer-events-none': !page.url.prev, 'opacity-30': !page.url.prev}]} href={page.url.prev}>&lt;</a>
-        <a class="p-2 border border-slate-400 rounded-sm" class:list={[{'pointer-events-none': !page.url.next, 'opacity-30': !page.url.next}]} href={page.url.next}>&gt;</a>
+        <a class="p-2 border border-slate-400 rounded-sm" class:list={[{'pointer-events-none': !page.url.prev, 'opacity-30': !page.url.prev}]} href={page.url.prev ? `${import.meta.env.BASE_URL}${page.url.prev}` : ''}>&lt;</a>
+        <a class="p-2 border border-slate-400 rounded-sm" class:list={[{'pointer-events-none': !page.url.next, 'opacity-30': !page.url.next}]} href={page.url.next ? `${import.meta.env.BASE_URL}${page.url.next}` : ''}>&gt;</a>
       </nav>
 		</main>
 		<Footer />
