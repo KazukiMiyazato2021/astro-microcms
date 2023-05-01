@@ -47,13 +47,9 @@ jobs:
           path: $GITHUB_WORKSPACE/node_modules/.astro/image/
       - name: Install, build, and upload your site
         uses: withastro/action@v0
-      - name: List Artifact
+      - name: List images cache
         run: |
-          pwd
-          ls -la
-          echo $GITHUB_WORKSPACE
-          ls -la $GITHUB_WORKSPACE
-          ls -la $GITHUB_WORKSPACE/dist
+          ls -la $GITHUB_WORKSPACE/node_modules/.astro/image/
       - name: Save images cache
         id: cache-images-save
         uses: actions/upload-artifact@v3
