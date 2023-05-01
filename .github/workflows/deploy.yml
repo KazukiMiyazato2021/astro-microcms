@@ -40,25 +40,32 @@ jobs:
           cache-dependency-path: yarn.lock
       - name: Yarn install
         run: yarn install --frozen-lockfile
+
       - name: Restore cached images
         id: cache-images-restore
-        uses: actions/download-artifact@v3
+        uses: actions/cache/restore@v3
         with:
-          path: $GITHUB_WORKSPACE/node_modules/.astro/image/
+          path: node_modules/.astro/image/
+          key: ${{ runner.os }}-images
+
       - name: Install, build, and upload your site
         uses: withastro/action@v0
       - name: List images cache
         run: |
           ls -la $GITHUB_WORKSPACE/node_modules/.astro/image/
-      - name: Save images cache
+
+      - name: Save cached images
         id: cache-images-save
-        uses: actions/upload-artifact@v3
+        uses: actions/cache/save@v3
+        if: always()
         with:
-          path: $GITHUB_WORKSPACE/node_modules/.astro/image/
+          path: node_modules/.astro/image/
+          key: ${{ steps.cache-images-restore.outputs.cache-primary-key }}
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          path: $GITHUB_WORKSPACE/dist/
+          path: dist/
 
   deploy:
     needs: build
