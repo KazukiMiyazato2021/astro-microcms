@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getNewsList } from '../library/microcms';
+import { Picture } from '@astrojs/image/components';
 
 const response = await getNewsList({fields: ['id', 'title']})
 ---
@@ -57,6 +58,7 @@ const response = await getNewsList({fields: ['id', 'title']})
 					)}
 				</ul>
 			</section>
+			<Picture src={import('../img/amr-taha-lzjr1IY0tcM-unsplash.jpg')} alt="Sample Image" widths={[375, 768, 1280, 1440]} />
 		</main>
 		<Footer />
 	</body>
