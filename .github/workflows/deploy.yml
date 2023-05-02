@@ -50,9 +50,6 @@ jobs:
 
       - name: Install, build, and upload your site
         uses: withastro/action@v0
-      - name: List images cache
-        run: |
-          ls -la $GITHUB_WORKSPACE/node_modules/.astro/image/
 
       - name: Save cached images
         id: cache-images-save
